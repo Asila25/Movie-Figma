@@ -1,0 +1,31 @@
+@import "tailwindcss";
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@import url(https://db.onlinewebfonts.com/c/362636484f8ad521fec5a297fdc0ab12?family=Aeonik+Pro+Bold);
+
+@font-face {
+    font-family: 'Aeonik Pro';
+    src: url('/fonts/AeonikPro-Regular.woff2') format('woff2'),
+         url('/fonts/AeonikPro-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+  }
+
+
+
+@theme {
+  --color-primary: #c61f1f;
+  --color-dark: #1e1e1e;
+  --color-content: #111111;
+}
+
+body {
+    font-family: "Aeonik Pro", sans-serif;
+}
+
+
+.container {
+  max-width: 1212px;
+  padding: 0 16px;
+}
