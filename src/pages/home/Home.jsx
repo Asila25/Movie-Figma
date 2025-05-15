@@ -8,7 +8,7 @@ const Home = () => {
 
   return (
     <div>
-      <MovieView movies={data?.results} />
+      <MovieView data={data?.results} />
       {loading && <Skeleton count={20} />}
     </div>
   );

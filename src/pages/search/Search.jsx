@@ -65,7 +65,7 @@ const Search = () => {
 
       {filteredFilms.length > 0 && (
         <div className="mt-10 w-full flex justify-center">
-          <MovieView movies={filteredFilms} />
+          <MovieView data={filteredFilms} />
         </div>
       )}
     </div>
