@@ -24,10 +24,10 @@ const Footer = () => {
             <img src={icon} alt="main icon" />
           </div>
           <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-2 border border-gray-700 rounded-lg p-2 cursor-pointer">
+            <div className="flex items-center gap-2  p-2 cursor-pointer">
               <img src={googlePlay} alt="googlePlay" />
             </div>
-            <div className="flex items-center gap-2 border border-gray-700 rounded-lg p-2 cursor-pointer">
+            <div className="flex items-center gap-2  p-2 cursor-pointer">
               <img src={appStore} alt="appStore" />
             </div>
           </div>

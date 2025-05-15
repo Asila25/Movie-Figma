@@ -1,6 +1,7 @@
 import React, { lazy } from "react";
 import { useRoutes } from "react-router-dom";
 import { Suspense } from "../utils";
+import SingleMovie from "./single-movie/SingleMovie";
 const Layout = lazy(() => import("./layout/Layout"));
 const Home = lazy(() => import("./home/Home"));
 const Movies = lazy(() => import("./movies/Movies"));
@@ -46,6 +47,14 @@ const MainRouters = () => {
           element: (
             <Suspense>
               <Search />
+            </Suspense>
+          ),
+        },
+        {
+          path: "/movie/:id",
+          element: (
+            <Suspense>
+              <SingleMovie />
             </Suspense>
           ),
         },

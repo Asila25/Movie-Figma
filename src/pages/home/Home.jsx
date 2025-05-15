@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from "react";
-import { api } from "../../api";
-import { useFetch } from "../../hooks/useFetch";
+import React from "react";
 import MovieView from "../../components/movie-view/MovieView";
+import Skeleton from "../../components/skeletion/Skeleton";
+import { useFetch } from "../../hooks/useFetch";
 
 const Home = () => {
-  const { data, loading, error } = useFetch("/discover/movie");
+  const { data, error, loading } = useFetch("/discover/movie");
 
-  console.log(data);
-
-  return <div>
-    <MovieView data={data?.results} />
-  </div>;
+  return (
+    <div>
+      <MovieView movies={data?.results} />
+      {loading && <Skeleton count={20} />}
+    </div>
+  );
 };
 
-export default Home;
+export default React.memo(Home);

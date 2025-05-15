@@ -2,7 +2,7 @@
 
 @custom-variant dark (&:where(.dark, .dark *));
 
-@import url(https://db.onlinewebfonts.com/c/362636484f8ad521fec5a297fdc0ab12?family=Aeonik+Pro+Bold);
+/* @import url(https://db.onlinewebfonts.com/c/362636484f8ad521fec5a297fdc0ab12?family=Aeonik+Pro+Bold);
 
 @font-face {
     font-family: 'Aeonik Pro';
@@ -10,7 +10,7 @@
          url('/fonts/AeonikPro-Regular.woff') format('woff');
     font-weight: normal;
     font-style: normal;
-  }
+  } */
 
 
 
