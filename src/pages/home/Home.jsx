@@ -5,6 +5,7 @@ import { useFetch } from "../../hooks/useFetch";
 
 const Home = () => {
   const { data, error, loading } = useFetch("/discover/movie");
+console.log(data);
 
   return (
     <div>

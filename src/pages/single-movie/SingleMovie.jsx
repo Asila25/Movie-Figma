@@ -3,7 +3,10 @@ import { useParams } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import MovieView from "../../components/movie-view/MovieView";
 
-
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import { Navigation } from "swiper/modules";
 
 const url = import.meta.env.VITE_IMAGE_URL;
 
@@ -18,30 +21,58 @@ const SingleMovie = () => {
 
   return (
     <div className="container mx-auto py-6">
-      <div className="mb-6">
+      <div className="mb-6 flex justify-center">
         <img
           src={url + data.backdrop_path}
           alt={data.title}
-          className="w-full rounded-lg"
+          className="w-full max-w-4xl h-auto rounded-lg shadow-lg"
         />
       </div>
+
       <div className="space-y-4">
-        <h1 className="text-4xl font-bold">{data.title}</h1>
-        <p className="text-gray-700">{data.overview}</p>
+        <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold">
+          {data.title}
+        </h2>
+        <p className="text-sm sm:text-base text-gray-700">{data.overview}</p>
+
         <p> {data.vote_average}</p>
         <strong className="text-lg">
           Budget: {data.budget?.toLocaleString()} USD
         </strong>
       </div>
-
-      <div className="grid grid-cols-5">
-        {images?.backdrops?.slice(7, 18)?.map((image) => (
-          <img key={image.file_path} src={url + image.file_path} alt="" />
+      <Swiper
+        modules={[Navigation]}
+        spaceBetween={10}
+        navigation
+        breakpoints={{
+          320: {
+            slidesPerView: 2,
+          },
+          768: {
+            slidesPerView: 3,
+          },
+          1280: {
+            slidesPerView: 4,
+          },
+        }}
+        className="my-6"
+      >
+        {images?.backdrops?.slice(0, 18)?.map((image) => (
+          <SwiperSlide key={image.file_path}>
+            <img
+              src={url + image.file_path}
+              alt=""
+              className="w-full h-auto rounded-lg object-cover"
+            />
+          </SwiperSlide>
         ))}
-      </div>
-      <div>
-        <h2>Similar</h2>
-        <MovieView movies={similars?.results?.slice(0, 4)} />
+      </Swiper>
+
+      <div className="my-6">
+        <h2 className="text-white font-bold text-3xl py-3.5 ">
+          Similar Movies
+        </h2>
+        <MovieView data={similars?.results?.slice(0, 4)} />
       </div>
     </div>
   );

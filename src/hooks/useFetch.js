@@ -1,5 +1,5 @@
-import { api } from "@/api";
 import { useState, useEffect } from "react";
+import { api } from "../api";
 
 export const useFetch = (endpoint, params = {}) => {
   const [data, setData] = useState(null);
