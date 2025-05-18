@@ -4,29 +4,6 @@ import google from "../../assets/google.svg";
 
 const Login = () => {
   return (
-    // <div className="text-white container flex flex-col align-middle justify-center text-center mx-auto px-6 py-12">
-    //   <h2 className="text-white text-3xl font-semibold mb-4">Регистрация</h2>
-    //   <p className="text-[#777777] mb-8 text-sm">
-    //     Введите номер телефона для того чтобы войти или пройти регистрацию
-    //   </p>
-    //   <input
-    //     type="text"
-    //     placeholder="+998 88 800-90-00"
-    //     className="w-[380px] flex align-middle justify-center  mb-6 px-4 py-3 rounded-md bg-[#222222] text-white placeholder-[#777777] border border-transparent focus:outline-none focus:border-red-600"
-    //   />
-    //   <button className="w-[380px] bg-red-700 hover:bg-red-600 text-white py-3 rounded-md font-medium mb-6 transition-colors ">
-    //     Регистрация
-    //   </button>
-    //   <p className="text-[#777777] text-center mb-6">или</p>
-    //   <div className="flex justify-center gap-4">
-    //     <button className="flex items-center justify-center bg-[#222222]  rounded-md hover:bg-[#3b5998] transition-colors w-24">
-    //       <img src={facebook} alt="facebook" className="w-6 h-6" />
-    //     </button>
-    //     <button className="flex items-center justify-center bg-[#222222] p-3 rounded-md hover:bg-[#db4437] transition-colors w-24">
-    //       <img src={google} alt="google" className="w-6 h-6" />
-    //     </button>
-    //   </div>
-    // </div>
 
     <div className="text-white flex flex-col items-center justify-center text-center mx-auto px-6 py-12 gap-4 ">
       <h2 className="text-white text-[32px] font-semibold mb-4">Регистрация</h2>

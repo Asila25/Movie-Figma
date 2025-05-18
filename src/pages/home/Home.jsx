@@ -21,61 +21,12 @@ const url = import.meta.env.VITE_IMAGE_URL;
 const Home = () => {
   const [thumbsSwiper, setThumbsSwiper] = useState(null);
   const { data, error, loading } = useFetch("/discover/movie");
-  console.log(data, "home");
   const navigate = useNavigate();
 
 
   
   return (
     <>
-      {/* <Swiper
-        style={{
-          "--swiper-navigation-color": "#fff",
-          "--swiper-pagination-color": "#fff",
-        }}
-        spaceBetween={10}
-        navigation={true}
-        thumbs={{ swiper: thumbsSwiper }}
-        modules={[FreeMode, Navigation, Thumbs]}
-        className="mySwiper2 w-[1224px] h-auto"
-      >
-        {data?.results?.map((movie) => (
-          <SwiperSlide
-            key={movie.id}
-            className="relative flex items-center justify-center w-full h-[450px] rounded-lg overflow-hidden"
-          >
-            <img
-              className="w-full h-full object-cover"
-              src={`${url}${movie.backdrop_path}`}
-              alt={movie.title}
-            />
-
-            <div className="absolute inset-0 bg-gradient-to-t from-black/80  to-transparent flex flex-col justify-end items-center p-6 text-white">
-              <h2 className="text-8xl font-bold text-center mb-2">
-                {movie.original_title}
-              </h2>
-              <div className="flex items-center gap-2 text-xl mb-4">
-                <span>{new Date(movie.release_date).getFullYear()}</span>
-                <GoDotFill className="text-[#C61F1F]" />
-                <span>{movie.original_language?.toUpperCase()}</span>
-                <GoDotFill className="text-[#C61F1F]" />
-
-                <span className="text-gray-400">
-                  {Math.floor(data.runtime / 60)}h {data.runtime % 60}m
-                </span>
-              </div>
-              <button
-                onClick={() => navigate(`/movie/${movie.id}`)}
-                className="flex items-center gap-2 bg-white text-[#C61F1F] font-medium  py-3.5 px-[137px] rounded-full shadow-md hover:bg-gray-200 transition"
-              >
-                <FaPlay className="text-[#C61F1F]" />
-                Смотреть
-              </button>
-            </div>
-          </SwiperSlide>
-        ))}
-      </Swiper> */}
-
       <Swiper
         style={{
           "--swiper-navigation-color": "#fff",

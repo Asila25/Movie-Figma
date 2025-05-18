@@ -18,7 +18,6 @@ const SingleMovie = () => {
   const { data } = useFetch(`/movie/${id}`);
   const { data: images } = useFetch(`/movie/${id}/images`);
   const { data: similars } = useFetch(`/movie/${id}/similar`);
-  console.log(data,"single page");
   
 
   if (!data)
@@ -34,7 +33,6 @@ const SingleMovie = () => {
         />
       </div>
 
-      {/* Movie Info */}
       <div className="space-y-6 bg-[#1D1D1D] p-6 rounded-xl shadow-md">
         <h2 className="text-3xl sm:text-4xl font-bold leading-tight text-red-500">
           {data.title}
