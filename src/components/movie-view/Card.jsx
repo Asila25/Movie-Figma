@@ -40,8 +40,9 @@ const Card = ({ item }) => {
   const genreNames = getGenres();
 
   return (
-    <div className="bg-[#1D1D1D] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 w-full max-w-xs mx-auto">
-      <div className=" overflow-hidden">
+  
+    <div className="bg-[#1D1D1D] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 lg:w-[350px] md:w-[300px] sm:w-[250px]">
+      <div className="overflow-hidden">
         <img
           onClick={() => navigate(`/movie/${item.id}`)}
           loading="lazy"
@@ -51,13 +52,13 @@ const Card = ({ item }) => {
         />
       </div>
       <div className="p-4">
-        <div className="flex justify-between gap-2">
-          <h3 className="text-white font-semibold mb-1 truncate">
+        <div className="flex justify-between gap-2 items-start">
+          <h3 className="text-white font-semibold mb-1 truncate max-w-[75%]">
             {item.title}
           </h3>
           <div
             onClick={handleSave}
-            className="  text-[#C61F1F] text-xl cursor-pointer"
+            className="text-[#C61F1F] text-xl cursor-pointer"
           >
             {isSaved ? (
               <FaBookmark color="red" />
@@ -66,8 +67,12 @@ const Card = ({ item }) => {
             )}
           </div>
         </div>
-        <p className="text-gray-400 text-sm">{item.original_language}</p>
-        <p className="text-gray-500 text-xs">{genreNames.join(", ")}</p>
+        <p className="text-gray-400 text-sm truncate">
+          {item.original_language}
+        </p>
+        <p className="text-gray-500 text-xs truncate">
+          {genreNames.join(", ")}
+        </p>
       </div>
     </div>
   );
