@@ -78,4 +78,4 @@ const SingleMovie = () => {
   );
 };
 
-export default SingleMovie;
+export default React.memo(SingleMovie);

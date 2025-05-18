@@ -69,4 +69,4 @@ const Movies = () => {
   );
 };
 
-export default Movies;
+export default React.memo(Movies);
