@@ -1,6 +1,6 @@
 
 import React, { useState } from "react";
-import { NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { IoBookmarkOutline, IoSearch } from "react-icons/io5";
 import { HiMenu, HiX } from "react-icons/hi";
 import { MdOutlineMovie } from "react-icons/md";
@@ -83,11 +83,11 @@ const Header = () => {
 
         <ul className="hidden md:flex gap-7">{navLinks}</ul>
 
-        <div className="hidden md:block">
+        <Link to={"/login"} className="hidden md:block">
           <button className="py-3 px-6 bg-[#C61F1F] rounded-lg text-white hover:bg-[#C61F1F80]">
             Войти
           </button>
-        </div>
+        </Link>
 
         <button
           onClick={() => setMenuOpen(!menuOpen)}
