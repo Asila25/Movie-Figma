@@ -41,7 +41,7 @@ const Card = ({ item }) => {
 
   return (
   
-    <div className="bg-[#1D1D1D] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 lg:w-[350px] md:w-[300px] sm:w-[250px]">
+    <div className="bg-[#1D1D1D] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="overflow-hidden">
         <img
           onClick={() => navigate(`/movie/${item.id}`)}
@@ -53,7 +53,7 @@ const Card = ({ item }) => {
       </div>
       <div className="p-4">
         <div className="flex justify-between gap-2 items-start">
-          <h3 className="text-white font-semibold mb-1 truncate max-w-[75%]">
+          <h3 className="text-white font-semibold mb-1 truncate ">
             {item.title}
           </h3>
           <div
