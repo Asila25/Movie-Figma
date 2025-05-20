@@ -1,34 +1,15 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { FaBookmark, FaRegBookmark } from "react-icons/fa";
+import { useStateValue } from "../../context";
 
 const Card = ({ item }) => {
   const navigate = useNavigate();
+  const [state, dispatch] = useStateValue();
+
   const { data: genre } = useFetch("/genre/movie/list");
   const url = import.meta.env.VITE_IMAGE_URL;
-
-  const [isSaved, setIsSaved] = useState(false);
-
-  useEffect(() => {
-    const saved = JSON.parse(localStorage.getItem("savedMovies")) || [];
-    const exists = saved.some((movie) => movie.id === item.id);
-    setIsSaved(exists);
-  }, [item.id]);
-
-  const handleSave = () => {
-    const saved = JSON.parse(localStorage.getItem("savedMovies")) || [];
-
-    if (isSaved) {
-      const updated = saved.filter((movie) => movie.id !== item.id);
-      localStorage.setItem("savedMovies", JSON.stringify(updated));
-      setIsSaved(false);
-    } else {
-      const updated = [...saved, item];
-      localStorage.setItem("savedMovies", JSON.stringify(updated));
-      setIsSaved(true);
-    }
-  };
 
   const getGenres = () => {
     if (!genre?.genres || !item.genre_ids) return [];
@@ -40,7 +21,6 @@ const Card = ({ item }) => {
   const genreNames = getGenres();
 
   return (
-  
     <div className="bg-[#1D1D1D] rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
       <div className="overflow-hidden">
         <img
@@ -57,10 +37,10 @@ const Card = ({ item }) => {
             {item.title}
           </h3>
           <div
-            onClick={handleSave}
+            onClick={() => dispatch({ type: "SAVED", payload: item })}
             className="text-[#C61F1F] text-xl cursor-pointer"
           >
-            {isSaved ? (
+            {state.saved.some(({ id }) => id === item.id) ? (
               <FaBookmark color="red" />
             ) : (
               <FaRegBookmark color="red" />
@@ -79,4 +59,3 @@ const Card = ({ item }) => {
 };
 
 export default React.memo(Card);
-
