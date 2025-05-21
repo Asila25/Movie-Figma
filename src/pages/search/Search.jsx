@@ -1,75 +1,52 @@
-import React, { useEffect, useState } from "react";
-import { IoSearch } from "react-icons/io5";
-import { useFetch } from "../../hooks/useFetch";
-import MovieView from "../../components/movie-view/MovieView";
-import Skeleton from "../../components/skeletion/Skeleton";
+import { useFetch } from "@/hooks/useFetch";
+import React, { useState } from "react";
+import { FaSearch } from "react-icons/fa";
+import Card from "../../components/movie-view/Card";
 
 const Search = () => {
-  const [searchFilm, setSearchFilm] = useState("");
-  const [films, setFilms] = useState([]);
-  const [filteredFilms, setFilteredFilms] = useState([]);
+  const apiKey = import.meta.env.VITE_API_KEY;
+  const [query, setQuery] = useState("");
 
-  const { data, error, loading } = useFetch("/discover/movie");
+  const endpoint = query
+    ? `/search/movie?api_key=${apiKey}&query=${encodeURIComponent(query)}`
+    : null;
 
-  const handleSearch = (e) => {
-    setSearchFilm(e.target.value);
-  };
-
-  useEffect(() => {
-    if (data && data.results) {
-      setFilms(data.results);
-    }
-  }, [data]);
-
-  useEffect(() => {
-    if (searchFilm.trim() === "") {
-      setFilteredFilms([]);
-    } else {
-      const lowercasedSearch = searchFilm.toLowerCase();
-      const filtered = films.filter((film) =>
-        film.title.toLowerCase().includes(lowercasedSearch)
-      );
-      setFilteredFilms(filtered);
-    }
-  }, [searchFilm, films]);
+  const { data, loading } = useFetch(endpoint);
 
   return (
-    <div className="flex flex-col items-center min-h-screen bg-black text-white py-12">
-      <div className="flex items-center bg-[#1E1E1E] rounded-full px-4 py-2 w-80 shadow-lg">
-        <IoSearch className="text-[#A1A1A1] text-xl mr-2" />
+    <div className="container mx-auto flex flex-col items-center mt-[50px] justify-center px-4">
+      <div className="flex py-5 px-5 gap-3 border border-[#4D4D4D] w-full max-w-xl rounded-[12px]">
+        <FaSearch className="text-[25px] text-red-700" />
         <input
+          value={query}
+          onChange={(e) => setQuery(e.target.value)}
+          className="outline-none w-full bg-transparent text-white placeholder:text-[#999]"
           type="text"
-          value={searchFilm}
-          onChange={handleSearch}
-          placeholder="Название фильма"
-          className="bg-transparent outline-none text-sm placeholder-[#A1A1A1] text-white w-full"
+          placeholder="Search movies"
         />
       </div>
 
-      {loading && <Skeleton />}
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mt-6 w-full">
+        {loading && (
+          <p className="text-center text-gray-400 col-span-full mt-10">
+            Loading...
+          </p>
+        )}
 
-      {(searchFilm.trim() === "" || filteredFilms.length === 0) && (
-        <div className="mt-10 w-full flex justify-center">
-          <div className="text-center text-[#A1A1A1] space-y-2">
-            {searchFilm.trim() === "" ? (
-              <>
-                <p>Страница пока пуста</p>
-                <p>По вашему запросу ничего не найдено</p>
-              </>
-            ) : (
-              <p>По вашему запросу ничего не найдено</p>
+        {!loading && data?.results?.length > 0
+          ? data.results.map((item) => <Card key={item.id} item={item} />)
+          : query &&
+            !loading && (
+              <div className="flex flex-col items-center col-span-full">
+                <p className="mt-[120px] mb-[80px] text-[20px]">
+                  The page is still empty
+                </p>
+                <p className="text-[20px]">No results found for your query.</p>
+              </div>
             )}
-          </div>
-        </div>
-      )}
-
-      {filteredFilms.length > 0 && (
-        <div className="mt-10 w-full flex justify-center">
-          <MovieView data={filteredFilms} />
-        </div>
-      )}
+      </div>
     </div>
   );
 };
 
-export default React.memo(Search);
+export default Search;
